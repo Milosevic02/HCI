@@ -55,5 +55,14 @@ namespace Vezba1_2WPF
                 NameTextBox.Foreground = Brushes.Black;
             }
         }
+
+        private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (NameTextBox.Text.Trim().Equals(string.Empty))
+            {
+                NameTextBox.Text = "Input student name";
+                NameTextBox.Foreground = Brushes.LightSlateGray;
+            }
+        }
     }
 }
