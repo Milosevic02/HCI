@@ -46,5 +46,14 @@ namespace Vezba1_2WPF
         {
             this.Close();
         }
+
+        private void NameTextBox_GotFocus(object sender,RoutedEventArgs e)
+        {
+            if (NameTextBox.Text.Trim().Equals("Input student name"))
+            {
+                NameTextBox.Text = "";
+                NameTextBox.Foreground = Brushes.Black;
+            }
+        }
     }
 }
