@@ -84,6 +84,8 @@
             Height="28"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            GotFocus="NameTextBox_GotFocus"
+            LostFocus="NameTextBox_LostFocus"
             Text=""
             TextWrapping="Wrap" />
         <TextBox
@@ -94,6 +96,8 @@
             Height="28"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            GotFocus="SurnameTextBox_GotFocus"
+            LostFocus="SurnameTextBox_LostFocus"
             Text=""
             TextWrapping="Wrap" />
         <RadioButton
