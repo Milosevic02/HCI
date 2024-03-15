@@ -14,6 +14,10 @@ namespace Vezba1_2WPF
             InitializeComponent();
 
             NameTextBox.Text = "Input student name";
+            NameTextBox.Foreground = Brushes.LightSlateGray;
+
+            SurnameTextBox.Text = "Input student surname";
+            SurnameTextBox.Foreground = Brushes.LightSlateGray;
 
             DepartmentComboBox.ItemsSource = Constants.departments;
         }
