@@ -64,5 +64,23 @@ namespace Vezba1_2WPF
                 NameTextBox.Foreground = Brushes.LightSlateGray;
             }
         }
+
+        private void SurnameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SurnameTextBox.Text.Trim().Equals("Input student surname"))
+            {
+                SurnameTextBox.Text = "";
+                SurnameTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void SurnameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (SurnameTextBox.Text.Trim().Equals(string.Empty))
+            {
+                SurnameTextBox.Text = "Input student surname";
+                SurnameTextBox.Foreground = Brushes.LightSlateGray;
+            }
+        }
     }
 }
