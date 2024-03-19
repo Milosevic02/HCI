@@ -1,0 +1,84 @@
+﻿<Window x:Class="Vezbe2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vezbe2" 
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+        mc:Ignorable="d"
+        Title="Student Account System"
+        Height="500"
+        Width="350"
+        ResizeMode="NoResize">
+    <Grid>
+        <notifications:NotificationArea
+            x:Name="WindowNotificationArea"
+            Panel.ZIndex="1000"
+            MaxItems="3"
+            Position="TopRight"/>
+
+        <DockPanel>
+            <Grid
+                Height="50"
+                Background="#FF707070"
+                DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="BackButton"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="5"
+                    Background="White"
+                    Foreground="Black"
+                    Click="BackButton_Click"
+                    Content="Back"
+                    Cursor="Hand"
+                    IsEnabled="{Binding ElementName=MainFrame, Path=CanGoBack}"
+                    ToolTip="Navigate Back" />
+
+                <Menu Grid.Column="1">
+                    <MenuItem
+                        Name="DataTablePageMenuItem"
+                        Height="50"
+                        Click="DataTablePageMenuItem_Click"
+                        Cursor="Hand"
+                        Header="Data Table"
+                        ToolTip="Go to Data Table Page" />
+                    <MenuItem
+                        Name="AddStudentPageMenuItem"
+                        Height="50"
+                        Click="AddStudentPageMenuItem_Click"
+                        Cursor="Hand"
+                        Header="Add Student"
+                        ToolTip="Go to Add Student Page" />
+                </Menu>
+                <Button
+                    x:Name="ExitButton"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="5"
+                    Width="Auto"
+                    Height="Auto"
+                    Background="White"
+                    Foreground="Black"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="ExitButton_Click"
+                    Cursor="Hand"
+                    Content="Exit"
+                    ToolTip="Close the application" />
+            </Grid>
+
+            <Frame
+                x:Name="MainFrame"
+                DockPanel.Dock="Bottom"
+                NavigationUIVisibility="Hidden"
+                Source="Pages/DataTablePage.xaml" />
+        </DockPanel>
+    </Grid>
+</Window>
