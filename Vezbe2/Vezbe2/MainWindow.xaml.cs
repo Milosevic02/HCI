@@ -30,11 +30,19 @@ namespace Vezbe2
 
         public ObservableCollection<Student> Students;
 
+        private DataIO serializer = new DataIO();
+
         public MainWindow()
         {
             InitializeComponent();
 
             notificationManager = new NotificationManager();
+
+            Students = serializer.DeSerializeObject<ObservableCollection<Student>>("StudentAccounts.xml");
+            if(Students == null)
+            {
+                Students = new ObservableCollection<Student>();
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -71,9 +79,28 @@ namespace Vezbe2
             notificationManager.Show(toastNotification.Title, toastNotification.Message, toastNotification.Type, "WindowNotificationArea");
         }
 
+        private void SaveDataAsXML()
+        {
+            serializer.SerializeObject<ObservableCollection<Student>>(Students, "StudentAccounts.xml");
+        }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Closing(object sender,CancelEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to exit?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if(messageBoxResult == MessageBoxResult.Yes)
+            {
+                SaveDataAsXML();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
