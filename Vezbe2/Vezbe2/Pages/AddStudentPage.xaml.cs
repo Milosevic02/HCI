@@ -43,7 +43,14 @@ namespace Vezbe2.Pages
                 Student newStudent = CreateFromFormData();
                 mainWindow.Students.Add(newStudent);
 
-                mainWindow
+                mainWindow.ShowToastNotification(new ToastNotification("Success", "Student added to the Data Table", NotificationType.Success));
+
+                this.NavigationService.Navigate(new Uri("Pages/DataTablePage.xaml", UriKind.RelativeOrAbsolute));
+
+            }
+            else
+            {
+                mainWindow.ShowToastNotification(new ToastNotification("Error", "Form fields are not correctly filled!", NotificationType.Error));
 
             }
 

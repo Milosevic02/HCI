@@ -28,6 +28,8 @@ namespace Vezbe2
     {
         private NotificationManager notificationManager;
 
+        public ObservableCollection<Student> Students;
+
         public MainWindow()
         {
             InitializeComponent();
