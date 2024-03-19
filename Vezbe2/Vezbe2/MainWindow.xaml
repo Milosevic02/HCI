@@ -9,7 +9,9 @@
         Title="Student Account System"
         Height="500"
         Width="350"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Closing="Window_Closing">
+        
     <Grid>
         <notifications:NotificationArea
             x:Name="WindowNotificationArea"
