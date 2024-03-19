@@ -37,6 +37,15 @@ namespace Vezbe2.Pages
 
         private void CreateStudentButton_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            if (ValidateFormData())
+            {
+                Student newStudent = CreateFromFormData();
+                mainWindow.Students.Add(newStudent);
+
+                mainWindow
+
+            }
 
         }
 
@@ -50,6 +59,60 @@ namespace Vezbe2.Pages
             {
                 return new Student(NameTextBox.Text, SurnameTextBox.Text, 'F', DepartmentComboBox.SelectedValue.ToString());
             }
+        }
+
+        private bool ValidateFormData()
+        {
+            bool isValid = true;
+
+            if(NameTextBox.Text.Trim().Equals(string.Empty) || NameTextBox.Text.Trim().Equals("Input student name")) {
+                
+                isValid = false;
+                NameErrorLabel.Content = "Form field cannot be left empty";
+                NameTextBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                NameErrorLabel.Content = string.Empty;
+                NameTextBox.BorderBrush= Brushes.Green;
+            }
+
+            if (SurnameTextBox.Text.Trim().Equals(string.Empty) || SurnameTextBox.Text.Trim().Equals("Input student surname"))
+            {
+                isValid = false;
+                SurnameErrorLabel.Content = "Form field cannot be left empty!";
+                SurnameTextBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                SurnameErrorLabel.Content = string.Empty;
+                SurnameTextBox.BorderBrush = Brushes.Gray;
+            }
+
+            if (MaleRadioButton.IsChecked == false && FemaleRadioButton.IsChecked == false)
+            {
+                isValid = false;
+                GenderErrorLabel.Content = "An option must be chosen!";
+            }
+            else
+            {
+                GenderErrorLabel.Content = string.Empty;
+            }
+
+            if (DepartmentComboBox.SelectedItem == null)
+            {
+                isValid = false;
+                DepartmentErrorLabel.Content = "An option must be chosen!";
+                DepartmentComboBoxColorBorder.BorderThickness = new Thickness(1);
+                DepartmentComboBoxColorBorder.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                DepartmentErrorLabel.Content = string.Empty;
+                DepartmentComboBoxColorBorder.BorderBrush = Brushes.Gray;
+            }
+
+            return isValid;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
