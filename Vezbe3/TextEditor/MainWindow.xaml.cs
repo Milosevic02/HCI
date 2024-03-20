@@ -13,12 +13,41 @@ namespace TextEditor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    { 
+    public partial class MainWindow : Window,INotifyPropertyChanged
+    {
+        private bool _isDarkTheme;
+        private Brush _defaultToolBarColor;
 
+        public bool IsDarkTheme
+        {
+            get { return _isDarkTheme; }
+            set
+            {
+                if (_isDarkTheme != value)
+                {
+                    _isDarkTheme = value;
+                    OnPropertyChanged("IsDarkTheme");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
+            IsDarkTheme = false;
+            _defaultToolBarColor = EditorToolBar.Background;
+
+            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            this.DataContext = this;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -26,7 +55,22 @@ namespace TextEditor
             this.Close();
         }
 
-        private void FontFamilyComboBox_SelectionChanged()
+        private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DarkThemeToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DarkThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditorRichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
         }
