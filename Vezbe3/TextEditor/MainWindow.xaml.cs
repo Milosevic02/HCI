@@ -25,5 +25,10 @@ namespace TextEditor
         {
             this.Close();
         }
+
+        private void FontFamilyComboBox_SelectionChanged()
+        {
+
+        }
     }
 }

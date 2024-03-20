@@ -15,7 +15,7 @@
     <Window.Resources>
         <Style
             x:Key="DefaultButtonStyle"
-            TargetType="Button"
+            TargetType="Button">
             <Setter
                 Property="FontFamily"
                 Value="Times New Roman"/>
@@ -64,7 +64,28 @@
             Canvas.Top="60"
             Width="475"
             Height="240">
-            
+            <ToolBar
+                Name="EditorToolBar"
+                DockPanel.Dock="Top">
+                <ToggleButton
+                    Name="BoldToggleButton"
+                    Command="EditingCommands.ToggleBold"
+                    ToolTip="Bold">
+                    <fa5:SvgAwesome
+                        Height="15"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        Icon="Solid_Bold"/>
+                </ToggleButton>
+                <Separator/>
+                <ComboBox
+                    Name="FontFamilyComboBox"
+                    Width="150"
+                    IsTextSearchCaseSensitive="False"
+                    IsTextSearchEnabled="True"
+                    SelectionChanged="FontFamilyComboBox_SelectionChanged"/>
+            </ToolBar>
             
 
             <StackPanel
@@ -75,7 +96,33 @@
                     x:Name="DarkThemeToggleButton"
                     Width="30"
                     Height="30"
-                    Cursor="Hand">
+                    Cursor="Hand"
+                    Checked="DarkThemeToggleButton_Checked"
+                    Unchecked="DarkThemeToggleButton_Unchecked">
+                    <ToggleButton.Style>
+                        <Style TargetType="{x:Type ToggleButton}">
+                            <Setter
+                                Property="fa5:Awesome.Content"
+                                Value="Solid_Sun"/>
+                            <Setter
+                                Property="ToolTip"
+                                Value="Switch to Dark Theme"/>
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding IsDarkTheme}"
+                                    Value="True">
+                                    <Setter
+                                        Property="fa5:Awesome.Content"
+                                        Value="Solid_Moon"/>
+                                    <Setter
+                                        Property="ToolTip"
+                                        Value="Switch to Light Theme"/>
+
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                    
                 </ToggleButton>
 
                 <Button
