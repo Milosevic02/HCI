@@ -55,6 +55,11 @@ namespace TextEditor
             this.Close();
         }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(FontFamilyComboBox.SelectedItem != null && !EditorRichTextBox.Selection.IsEmpty)
@@ -66,7 +71,11 @@ namespace TextEditor
 
         private void DarkThemeToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            IsDarkTheme = true;
+            UIPath.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom("#262626");
+            DarkThemeToggleButton.Background = Brushes.DarkGray;
+            CloseButton.Background = Brushes.DarkGray;
+            EditorToolBar.Background = Brushes.DarkGray;
         }
 
         private void DarkThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
