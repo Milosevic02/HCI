@@ -80,7 +80,11 @@ namespace TextEditor
 
         private void DarkThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            IsDarkTheme = false;
+            UIPath.Fill = Brushes.White;
+            DarkThemeToggleButton.Background = SystemColors.ControlLightBrush;
+            CloseButton.Background = SystemColors.ControlLightBrush;
+            EditorToolBar.Background = _defaultToolBarColor;
         }
 
         private void EditorRichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
