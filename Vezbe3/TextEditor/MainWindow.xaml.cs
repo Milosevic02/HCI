@@ -72,7 +72,11 @@ namespace TextEditor
 
         private void EditorRichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            object fontWeight = EditorRichTextBox.Selection.GetPropertyValue(Inline.FontWeightProperty);
+            BoldToggleButton.IsChecked = (fontWeight != DependencyProperty.UnsetValue) &&(fontWeight.Equals(FontWeights.Bold));
 
+            object fontFamily = EditorRichTextBox.Selection.GetPropertyValue(Inline.FontFamilyProperty);
+            FontFamilyComboBox.SelectedItem = fontFamily;
         }
     }
 }
